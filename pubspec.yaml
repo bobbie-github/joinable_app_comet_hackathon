@@ -1,0 +1,98 @@
+name: app_comet_hackathon
+description: A new Flutter project.
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.19.0-415.0.dev <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  chopper: ^5.1.0
+  flutter_bloc: ^8.1.1
+  dartz: ^0.10.1
+  json_annotation: ^4.7.0
+  equatable: ^2.0.5
+  injectable: ^2.1.0
+  hive: ^2.2.1
+  hive_flutter: ^1.1.0
+  url_launcher: ^6.1.2
+  get_it: ^7.2.0
+  firebase_auth: ^4.1.5
+  firebase_core: ^2.3.0
+  badges: ^2.0.3
+  awesome_notifications: ^0.7.4+1
+  firebase_messaging: ^14.1.3
+  flutter_native_splash: ^2.2.16
+  flutter_launcher_icons: ^0.11.0
+  flutter_svg: ^1.1.6
+  shimmer: ^2.0.0
+  pull_to_refresh: ^2.0.0
+  uni_links: ^0.5.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+  build_runner: ^2.3.2
+  chopper_generator: ^5.1.0+1
+  injectable_generator: ^2.1.3
+  hive_generator: ^1.1.3
+  json_serializable: ^6.5.4  #<--- provides Dart Build System builders for handling JSON.
+
+# The following section is specific to Flutter packages.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+    - assets/svg/
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: Notosan
+      fonts:
+        - asset: assets/fonts/NotoSansLao-Regular.ttf
+        - asset: assets/fonts/NotoSansLao-Condensed.ttf
+        - asset: assets/fonts/NotoSansLao-Bold.ttf
+
+
+    - family: Roberto
+      fonts:
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
+flutter_icons:
+  image_path_android: "assets/devhub.jpg"
+  image_path_ios: "assets/devhub.png"
+  android: true
+  ios: true
+  adaptive_icon_background: "#FFFFFF"
+  remove_alpha_ios: true
+  adaptive_icon_foreground: "assets/devhub.png"
