@@ -33,8 +33,11 @@ abstract class ApiService extends ChopperService {
   // @Get(path: ApiPath.user)
   // Future<Response> getUser();
 
-  @Get(path: ApiPath.todo)
+  @Get(path: ApiPath.getCodeCompany)
   Future<Response> getTodo();
+
+  @Get(path: ApiPath.getCodeCompany +'/{code}')
+  Future<Response> getCode( @Path('code') final String code);
 
 }
 

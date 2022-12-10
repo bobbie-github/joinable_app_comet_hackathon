@@ -1,7 +1,9 @@
 import 'package:app_comet_hackathon/core/config/routes/router.dart';
 import 'package:app_comet_hackathon/core/config/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'bloc_provider.dart';
 import 'core/config/DI/configure_dependencies.dart';
 
 void main() async {

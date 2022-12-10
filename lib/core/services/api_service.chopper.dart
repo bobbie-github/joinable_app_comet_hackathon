@@ -18,7 +18,18 @@ class _$ApiService extends ApiService {
 
   @override
   Future<Response<dynamic>> getTodo() {
-    final String $url = '/todos';
+    final String $url = '/company-code';
+    final Request $request = Request(
+      'GET',
+      $url,
+      client.baseUrl,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
+
+  @override
+  Future<Response<dynamic>> getCode(String code) {
+    final String $url = '/company-code/${code}';
     final Request $request = Request(
       'GET',
       $url,

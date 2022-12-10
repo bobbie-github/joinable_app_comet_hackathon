@@ -26,6 +26,4 @@ class TotoRepositoryImpl implements TodoRepository{
      return Left(ServerFailure(e.toString()));
    }
   }
-
-
 }
