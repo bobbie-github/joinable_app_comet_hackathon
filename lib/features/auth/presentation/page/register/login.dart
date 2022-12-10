@@ -11,14 +11,14 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../core/config/routes/router.dart';
 import '../../../../../core/util/base/base_container_message_error.dart';
 import '../../../../../core/util/base/base_text_input.dart';
-class CreatePassword extends StatefulWidget {
-  const CreatePassword({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<CreatePassword> createState() => _CreatePasswordScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _CreatePasswordScreenState extends State<CreatePassword> {
+class _LoginScreenState extends State<LoginScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final passwordController = TextEditingController();
   final emailEditingController = TextEditingController();
@@ -54,7 +54,7 @@ class _CreatePasswordScreenState extends State<CreatePassword> {
         ),
         leadingWidth: 50,
         title: Text(
-          'Create Register',
+          'Login',
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -89,17 +89,9 @@ class _CreatePasswordScreenState extends State<CreatePassword> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              "Create a password",
+                              "Login",
                               style: TextConfig.configText(
                                   fontsize: 20, fontWeight: FontWeight.bold),
-                            ),
-                          const  SizedBox(
-                              height: 15,
-                            ),
-                            Text(
-                              "Use a minimum of 10 characters, including uppercase letters, lowercase letters,and numbers",
-                              style: TextConfig.configText(
-                                  fontsize: 12, fontWeight: FontWeight.normal,color: TextColor.withOpacity(0.5)),
                             ),
                            const SizedBox(
                               height: 5,
@@ -198,73 +190,6 @@ class _CreatePasswordScreenState extends State<CreatePassword> {
                                 const SizedBox(
                                   height: 10,
                                 ),
-                                const Text(
-                                  'Confirm Password',
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                SizedBox(height: 5,),
-                                TextFormField(
-                                  controller: conFirmPasswordController,
-                                  obscureText: !conFirmPasswordVisibility,
-                                  decoration: InputDecoration(
-                                    labelText: null,
-                                    isDense: true,
-                                    hintText: null,
-
-                                    hintStyle: TextStyle(fontSize: 14),
-                                    labelStyle: TextStyle(fontSize: 14),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFDBE2E7),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(2),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0xFFDBE2E7),
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(2),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: RedColor,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(2),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: RedColor,
-                                        width: 1,
-                                      ),
-                                      borderRadius: BorderRadius.circular(2),
-
-                                    ),
-                                    filled: true,
-                                    fillColor: Colors.white,
-                                    suffixIcon: GestureDetector(
-                                      onTap: () => setState(
-                                            () => conFirmPasswordVisibility =
-                                        !conFirmPasswordVisibility,
-                                      ),
-                                      child: Icon(
-                                        conFirmPasswordVisibility
-                                            ? Icons.visibility_outlined
-                                            : Icons.visibility_off_outlined,
-                                        color: Color(0xFF95A1AC),
-                                        size: 17,
-                                      ),
-                                    ),
-                                    contentPadding:const EdgeInsets.symmetric(vertical: 7.0, horizontal: 7.0),
-                                    suffixIconConstraints:
-                                    const BoxConstraints(
-                                        minHeight: 40, minWidth: 40),
-                                  ),
-                                ),
                               ],
                             ),
                             SizedBox(
@@ -277,10 +202,10 @@ class _CreatePasswordScreenState extends State<CreatePassword> {
                             ),
                             InkWell(
                               onTap: (){
-                                if(state is SuccessCreatePassword){
-                                  Navigator.pushNamed(context, AppRoute.createInfoUserScreen);
+                                if(state is SuccessLogin){
+                                  Navigator.pushNamed(context, AppRoute.initialRoute);
                                 }else{
-                                  context.read<AuthCubit>().postRegister(emailEditingController.text, passwordController.text, conFirmPasswordController.text);
+                                  context.read<AuthCubit>().postLogin(emailEditingController.text, passwordController.text);
                                 }
                               },
                               child: Padding(
@@ -304,7 +229,7 @@ class _CreatePasswordScreenState extends State<CreatePassword> {
                                           ),
                                         ),
                                       Text(
-                                        'Continue',
+                                        'Login',
                                         style: TextConfig.configText(
                                             fontsize: 16,
                                             fontWeight: FontWeight.normal,

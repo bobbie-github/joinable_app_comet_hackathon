@@ -11,6 +11,7 @@ const GrayColor = Color(0xFF979797);
 const TextColor = Color(0xFF212121);
 const ShadowColor = Color(0xFF37474F);
 const KbackgroundColor = Color(0XFFFAFAFA);
+const backGroundColor = Color(0XFFF5F5F5);
 
 const ColorBGEXCHANGE = Color(0xFF90CAF9);
 const Darkcolor =Color(0xFF262D34);

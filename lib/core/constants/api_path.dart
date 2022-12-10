@@ -3,4 +3,6 @@ class ApiPath{
   //api path
   static const String getCodeCompany = "/company-code";
   static const String todo = "/todos";
+  static const String register = "/auth/register";
+  static const String login = "/auth/login";
 }

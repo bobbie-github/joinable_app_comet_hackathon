@@ -6,5 +6,5 @@ import '../../data/models/get_code_company_model.dart';
 
 
 abstract class AuthRepository{
-  Future<Either<Failure, dynamic>> getCode(code);
+  Future<Either<Failure, GetCodeCompanyModel>> getCode(code);
 }

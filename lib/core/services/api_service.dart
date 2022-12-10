@@ -1,6 +1,7 @@
 
 import 'dart:async';
 
+import 'package:app_comet_hackathon/features/auth/data/models/get_code_company_model.dart';
 import 'package:chopper/chopper.dart';
 import 'package:injectable/injectable.dart';
 import '../constants/api_path.dart';
@@ -21,7 +22,8 @@ abstract class ApiService extends ChopperService {
       converter: JsonConverter(),
         interceptors: [
           const HeadersInterceptor({
-            'Accept': 'application/json'
+            'Accept': 'application/json',
+            "Content-Type":'application/json',
             // 'Authorization':'Bearer $accessToken'
           }),
           HttpLoggingInterceptor()
@@ -37,7 +39,10 @@ abstract class ApiService extends ChopperService {
   Future<Response> getTodo();
 
   @Get(path: ApiPath.getCodeCompany +'/{code}')
-  Future<Response> getCode( @Path('code') final String code);
+  Future<Response> getCode(@Path('code') final String code);
+
+  @Post(path: ApiPath.register)
+  Future<Response> postRegister(@Body() Map<String, dynamic> data);
 
 }
 

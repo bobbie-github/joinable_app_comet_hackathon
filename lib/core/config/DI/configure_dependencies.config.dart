@@ -56,8 +56,10 @@ _i1.GetIt init(
       () => _i9.TodoRemoteDataSourcesImpl(gh<_i3.ApiService>()));
   gh.lazySingleton<_i10.TodoRepository>(
       () => _i11.TotoRepositoryImpl(gh<_i9.TodoRemoteDataSources>()));
-  gh.factory<_i12.AuthCubit>(
-      () => _i12.AuthCubit(gh<_i7.GetCodeCompanyUseCase>()));
+  gh.factory<_i12.AuthCubit>(() => _i12.AuthCubit(
+        gh<_i7.GetCodeCompanyUseCase>(),
+        gh<_i3.ApiService>(),
+      ));
   gh.lazySingleton<_i13.GetTodosUseCase>(
       () => _i13.GetTodosUseCase(gh<_i10.TodoRepository>()));
   gh.factory<_i14.TodoCubit>(() => _i14.TodoCubit(gh<_i13.GetTodosUseCase>()));

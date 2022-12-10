@@ -26,7 +26,7 @@ class TodoRemoteDataSourcesImpl extends TodoRemoteDataSources{
 
       final response  = await apiService.getTodo();
       // final jsonDecode = jsonEncode(response);
-      print("@@@@ ${jsonDecode}");
+      print("@@@@ ${response}");
       return [];
     }  catch (e) {
       print('@@@ $e');

@@ -9,12 +9,12 @@ import '../../../../core/usecases/usecase.dart';
 import '../repositories/auth_repository.dart';
 
 @lazySingleton
-class GetCodeCompanyUseCase implements UseCase<dynamic, dynamic> {
+class GetCodeCompanyUseCase implements UseCase<GetCodeCompanyModel, dynamic> {
   final AuthRepository authRepository;
   GetCodeCompanyUseCase(this.authRepository);
 
   @override
-  Future<Either<Failure, dynamic>> call(code) async {
+  Future<Either<Failure, GetCodeCompanyModel>> call(code) async {
     return await authRepository.getCode(code);
   }
 }

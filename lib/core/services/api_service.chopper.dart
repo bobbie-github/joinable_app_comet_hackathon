@@ -37,4 +37,17 @@ class _$ApiService extends ApiService {
     );
     return client.send<dynamic, dynamic>($request);
   }
+
+  @override
+  Future<Response<dynamic>> postRegister(Map<String, dynamic> data) {
+    final String $url = '/auth/register';
+    final $body = data;
+    final Request $request = Request(
+      'POST',
+      $url,
+      client.baseUrl,
+      body: $body,
+    );
+    return client.send<dynamic, dynamic>($request);
+  }
 }

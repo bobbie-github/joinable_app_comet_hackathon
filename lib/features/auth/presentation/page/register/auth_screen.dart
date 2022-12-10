@@ -96,31 +96,30 @@ class _AuthScreenScreenState extends State<AuthScreen> {
                                 SizedBox(
                                   height: 5,
                                 ),
-                                Container(
-                                  padding: EdgeInsets.only(top: 7, bottom: 7),
-                                  decoration: BoxDecoration(
-                                      color: Colors.lightBlue[700],
-                                      border: Border.all(color: WhiteColor)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      SvgPicture.asset(
-                                        "assets/svg/message.svg",
-                                        width: 20,
-                                        height: 20,
-                                        color: WhiteColor,
-                                      ),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Text(
-                                        'Continue with Login',
-                                        style: TextConfig.configText(
-                                            fontsize: 16,
-                                            fontWeight: FontWeight.normal,
-                                            color: WhiteColor),
-                                      ),
-                                    ],
+                                InkWell(
+                                  onTap: (){
+                                    Navigator.pushNamed(context, AppRoute.loginScreen);
+                                  },
+                                  child: Container(
+                                    padding: EdgeInsets.only(top: 7, bottom: 7),
+                                    decoration: BoxDecoration(
+                                        color: Colors.lightBlue[700],
+                                        border: Border.all(color: WhiteColor)),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Continue with Login',
+                                          style: TextConfig.configText(
+                                              fontsize: 16,
+                                              fontWeight: FontWeight.normal,
+                                              color: WhiteColor),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                                 SizedBox(

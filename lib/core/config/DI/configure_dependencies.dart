@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:injectable/injectable.dart';
 
 import '../http/http_config.dart';
@@ -21,6 +22,9 @@ Future<GetIt> configureDependencies() async {
 
   //http config
   HttpOverrides.global = HttpConfigCertificate();
+
+  //storage
+  await GetStorage.init();
 
   //theme
   SystemChrome.setSystemUIOverlayStyle(

@@ -2,9 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../../../../../core/config/theme/color.dart';
+import '../../../../../core/config/theme/text_config.dart';
+import '../base/base_home.dart';
 
 class BodyHome extends StatefulWidget {
   const BodyHome({Key? key}) : super(key: key);
@@ -42,10 +45,11 @@ class _BodyHomeState extends State<BodyHome> {
 
   @override
   Widget build(BuildContext context) {
+    final size  =MediaQuery.of(context).size;
     return SafeArea(
       child: Container(
         // color: WhiteColor,
-        color: Color(0xFFF0F0F0),
+        color: backGroundColor,
         height: MediaQuery.of(context).size.height,
         child: SmartRefresher(
           enablePullDown: true,
@@ -57,12 +61,104 @@ class _BodyHomeState extends State<BodyHome> {
           ),
           child: ScrollConfiguration(
             behavior: const ScrollBehavior().copyWith(overscroll: false),
-            child:  ListView(
-              shrinkWrap: true,
-              physics: ClampingScrollPhysics(),
-              children: [
-                Text("center"),
-              ],
+            child:  Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListView(
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                children: [
+                  Container(
+                    height: size.height * 0.2,
+                    padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: PrimaryColor,
+                      borderRadius: BorderRadius.circular(5)
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Hello new user",style: TextConfig.configText(color: WhiteColor,fontsize: 14,fontWeight: FontWeight.normal),),
+                            Text("Welcome to Haltech",style: TextConfig.configText(color: WhiteColor,fontsize: 18,fontWeight: FontWeight.normal),),
+                          ],
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GestureDetector(
+                              onTap: () async {
+
+                              },
+                              child: Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: CircleAvatar(
+                                    radius: 31,
+                                    backgroundColor: WhiteColor,
+                                    child: ClipOval(
+                                      child: Image.asset(
+                                        'assets/devhub.jpg',
+                                        fit: BoxFit.cover,
+                                        width: 60,
+                                        height: 60,
+                                      ),
+                                    ),
+                                  )
+                              ),
+                            ),
+                            SizedBox(height: 10,),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 0),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(vertical: 2,horizontal: 10),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(30),
+                                    // color: Colors.lightBlue[700],
+                                    border: Border.all(color: WhiteColor)),
+                                child:Text(
+                                  'Take a tour',
+                                  style: TextConfig.configText(
+                                      fontsize: 14,
+                                      fontWeight: FontWeight.normal,
+                                      color: WhiteColor),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: 15,),
+                  Text('Your friends'),
+                  Container(
+                    height: 70,
+                    child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: 20,itemBuilder: (_,index){
+                      return BaseFriend(
+                        img: 'assets/devhub.jpg',
+                        name: "Daungvilay Manykingkeo",
+                        des: "tech lead",
+                      );
+                    }),
+                  ),
+                  SizedBox(height: 15,),
+                  Text('Rencent Activity'),
+                  Container(
+                    height: 70,
+                    child: ListView.builder(scrollDirection: Axis.horizontal,itemCount: 20,itemBuilder: (_,index){
+                      return BaseActivity(
+                        img: 'assets/devhub.jpg',
+                        name: "Daungvilay Manykingkeo",
+                        des: "tech lead",
+                        time: '17:30',
+                        icon: 'assets/svg/edit-profile.svg',
+                      );
+                    }),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

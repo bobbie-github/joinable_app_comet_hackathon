@@ -3,12 +3,13 @@
 import 'package:app_comet_hackathon/core/config/routes/router.dart';
 import 'package:app_comet_hackathon/core/config/theme/color.dart';
 import 'package:app_comet_hackathon/core/config/theme/text_config.dart';
+import 'package:app_comet_hackathon/core/util/util_format.dart';
 import 'package:app_comet_hackathon/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:app_comet_hackathon/features/root/presentation/cubit/root_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-
+import 'package:get_storage/get_storage.dart';
 import '../../../../../core/util/base/base_text_input.dart';
 class CodeFillScreen extends StatefulWidget {
   const CodeFillScreen({Key? key}) : super(key: key);
@@ -29,7 +30,6 @@ class _CodeFillScreenState extends State<CodeFillScreen> {
     }
   }
   final codeEditingController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +57,12 @@ class _CodeFillScreenState extends State<CodeFillScreen> {
         centerTitle: true,
         toolbarHeight: 40,
       ),
-      body: Container(
+      body: BlocConsumer<AuthCubit, AuthState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    return Container(
         height: MediaQuery.of(context).size.height,
         color: PrimaryColor,
         child: Container(
@@ -85,13 +90,17 @@ class _CodeFillScreenState extends State<CodeFillScreen> {
                             SizedBox(
                               height: 15,
                             ),
+                            if(state is SuccessLoadCodeCompany)
                             Text(
-                              "Sign in to see deal up to 50%, easily manage your current bookings,and so much here...",
+                              state.getCodeCompanyModel.slogan.toString(),
                               style: TextConfig.configText(
                                   fontsize: 12, fontWeight: FontWeight.normal),
                             ),
-                            SizedBox(
-                              height: 5,
+                            if(state is SuccessLoadCodeCompany)
+                            Container(
+                              height: 150,
+                              width: MediaQuery.of(context).size.width,
+                              child: Image.network(state.getCodeCompanyModel.imageProfile!.url.toString(),fit: BoxFit.cover,),
                             ),
                             SizedBox(height: 10,),
                             Container(
@@ -109,9 +118,12 @@ class _CodeFillScreenState extends State<CodeFillScreen> {
                               height: 25,
                             ),
                             InkWell(
-                              onTap: (){
-                                context.read<AuthCubit>().getCode(codeEditingController.text);
-                                // Navigator.pushNamed(context, AppRoute.createPasswordScreen);
+                              onTap: ()async{
+                                if(state is SuccessLoadCodeCompany){
+                                  Navigator.pushNamed(context, AppRoute.createPasswordScreen);
+                                }else{
+                                  context.read<AuthCubit>().getCode(codeEditingController.text);
+                                }
                               },
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 0),
@@ -123,11 +135,15 @@ class _CodeFillScreenState extends State<CodeFillScreen> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      SvgPicture.asset(
-                                        "assets/svg/message.svg",
+                                      if(state is LoadingState)
+                                      Container(
                                         width: 20,
                                         height: 20,
-                                        color: WhiteColor,
+                                        child: CircularProgressIndicator(
+                                          color: WhiteColor,
+                                          strokeWidth: 2,
+
+                                        ),
                                       ),
                                       SizedBox(
                                         width: 10,
@@ -154,7 +170,9 @@ class _CodeFillScreenState extends State<CodeFillScreen> {
             ),
           ),
         ),
-      ),
+      );
+  },
+),
     );
   }
 }
