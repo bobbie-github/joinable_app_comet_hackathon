@@ -45,13 +45,10 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
               Container(
                 alignment: Alignment.center,
                 height: 50,
-
-
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(4.0)
                 ),
-
                 child: ListView.builder(
                   physics: BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
@@ -60,8 +57,6 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                   => InkWell(
                     splashColor: Colors.transparent,
                     highlightColor: Colors.transparent,
-
-
                     child: Container(
                       alignment: Alignment.center,
                       margin: EdgeInsets.only(right: 10.0),
@@ -71,16 +66,11 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                           borderRadius: BorderRadius.circular(4.0)
                       ),
                       child: Textframe(text: "L"),
-
                     ),
                   ),
                 ),
-
-
               ),
               SizedBox(height: 10.0),
-
-
               Container(
                 alignment: Alignment.center,
                 height: 300,
@@ -88,7 +78,6 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                   physics: BouncingScrollPhysics(),
                   padding: EdgeInsets.symmetric(horizontal: 0, vertical: 10.0),
                   children: [
-
                     Card(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -108,7 +97,6 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                         )
                     ),
                     SizedBox(height: 10.0),
-
                     Card(
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -143,7 +131,6 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                                 Textframe(text: '8:00',color: Colors.blue,),
                               ],
                             ),
-
                           ],
                         )
                     ),
@@ -163,24 +150,18 @@ class _CompanyProfilePageState extends State<CompanyProfilePage> {
                                 Textframe(text: '9:30',color: Colors.blue,),
                               ],
                             ),
-
                           ],
                         )
                     ),
                     SizedBox(height: 10.0),
                     // ),
                   ],
-
                 ),
               ),
-
-
             ],
           ),
         ),
       ),
-
-
     );
   }
 }

@@ -44,19 +44,15 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-
-
                         Align(
                           alignment: Alignment.center,
                           child: TextButton(
                             child:  Container(
                               height: 150,
                               width: 150,
-
                               decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
-
                                       image: NetworkImage("https://source.unsplash.com/random/200x200") ,
                                       fit: BoxFit.cover
                                   )
@@ -65,19 +61,15 @@ class _ProfilePageState extends State<ProfilePage> {
                             onPressed: () => () {},
                           ),
                         ),
-
                         Container(
                           height: 160,
                           width: 140,
-
-
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                             Container(
                             height: 50,
                             width: 80,
-
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
@@ -110,40 +102,23 @@ class _ProfilePageState extends State<ProfilePage> {
                                 ),
                               ],
                           ),
-
-
                         ),
-
-
-
                       ],
-
                     ),
                   ),
-
                 ],
               ),
             ),
             SizedBox(height: 10.0),
-            Align(
-                alignment: Alignment.center,
-                // child: ImagePickerFrave()
-            ),
-
             SizedBox(height: 15.0),
-            // Text('Activity' ),
             Textframe(text: 'Activity', fontSize: 15, fontWeight: FontWeight.w500 ),
             SizedBox(height: 10.0),
             Container(
               alignment: Alignment.center,
               height: 50,
-
-
               decoration: BoxDecoration(
-                // color: Colors.grey[200],
                   borderRadius: BorderRadius.circular(4.0)
               ),
-
               child: ListView.builder(
                 physics: BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
@@ -152,8 +127,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 => InkWell(
                   splashColor: Colors.transparent,
                   highlightColor: Colors.transparent,
-
-
                   child: Container(
                     alignment: Alignment.center,
                     margin: EdgeInsets.only(right: 10.0),
@@ -162,37 +135,29 @@ class _ProfilePageState extends State<ProfilePage> {
                       color: Color(0xff5469D4).withOpacity(.1),
                         borderRadius: BorderRadius.circular(50.0)
                     ),
-                    // child: Textframe(text: "LONGDER"),
                     child: Align(
                       alignment: Alignment.center,
                       child: TextButton(
                         child:  Container(
                           height: 60,
                           width: 60,
-
                           decoration: BoxDecoration(
                               shape: BoxShape.circle,
-
                           ),
                           child: Textframe(text: "Gamer"),
                         ),
                         onPressed: () => () {},
                       ),
                     ),
-
                   ),
                 ),
               ),
-
-
             ),
             SizedBox(height: 10.0),
             Textframe(text: 'Inotroduce Self', fontSize: 15, fontWeight: FontWeight.w500 ),
             Image(image: NetworkImage("https://source.unsplash.com/random/200x200")),
             SizedBox(height: 10.0),
-
             SizedBox(height: 10.0),
-
             Textframe(text: 'Past Event', fontSize: 15, fontWeight: FontWeight.w500 ),
             SizedBox(height: 10.0),
             Container(
@@ -205,9 +170,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 Container(
                 alignment: Alignment.center,
                 height: 60,
-                // width: 140,
-                // padding: EdgeInsets.all(10.0),
-
                 decoration: BoxDecoration(
                     color: Colors.grey[200],
                     borderRadius: BorderRadius.circular(4.0)
@@ -217,9 +179,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   Container(
                     alignment: Alignment.center,
                     height: 60,
-                    // width: 140,
-                    // padding: EdgeInsets.all(10.0),
-
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(4.0)
@@ -229,9 +188,6 @@ class _ProfilePageState extends State<ProfilePage> {
                   Container(
                     alignment: Alignment.center,
                     height: 60,
-                    // width: 140,
-                    // padding: EdgeInsets.all(10.0),
-
                     decoration: BoxDecoration(
                         color: Colors.grey[200],
                         borderRadius: BorderRadius.circular(4.0)
@@ -240,77 +196,11 @@ class _ProfilePageState extends State<ProfilePage> {
                   SizedBox(height: 10.0),
                   // ),
                 ],
-
               ),
             ),
-
-
           ],
       ),
     ),
   );
   }
-}
-
-
-class _ListSub extends StatelessWidget {
-
-
-
-
-  @override
-  Widget build(BuildContext context) {
-
-    return ListView.builder(
-        itemCount: 3,
-        itemBuilder: (context, i)
-        => Padding(
-          padding: const EdgeInsets.only(bottom: 15.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Container(
-                height: 50,
-                width: 80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Name"),
-                  ],
-                ),
-              ),
-              Container(
-                height: 50,
-                width: 80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Gender"),
-                  ],
-                ),
-              ),
-              Container(
-                height: 50,
-                width: 80,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Carreer"),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        )
-    );
-  }
-
-
-}
-
-
-class textinfo {
-  String? Name;
-  String? Gender;
-  String? Carreer;
 }
