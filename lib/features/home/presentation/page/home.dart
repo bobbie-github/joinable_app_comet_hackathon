@@ -69,7 +69,6 @@ class _HomePageState extends State<HomePage> {
   builder: (context, state) {
     if (state is SuccessInfoHomePage) {
       final img = state.infoModel.personal!.imageProfile;
-      print(img);
       if(img !=null) {
         return Padding(
             padding: EdgeInsets.all(5),
@@ -198,7 +197,7 @@ class _HomePageState extends State<HomePage> {
           leading: Icon(
             Icons.train,
           ),
-          title: const Text('Page 2'),
+          title: const Text('Setting'),
           onTap: () {
            Navigator.pushNamed(context, AppRoute.authScreen);
           },

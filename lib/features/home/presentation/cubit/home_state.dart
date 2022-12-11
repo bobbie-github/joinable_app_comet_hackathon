@@ -9,11 +9,8 @@ class HomeInitial extends HomeState {}
 class LoadingGetInfoHomePage extends HomeState{}
 class SuccessInfoHomePage extends HomeState{
   InfoModel infoModel;
-  SuccessInfoHomePage({required this.infoModel});
-}
-class SuccessFriend extends HomeState{
   List<FriendModel> friendModel;
-  SuccessFriend({required this.friendModel});
+  SuccessInfoHomePage({required this.infoModel,required this.friendModel});
 }
 
 class ErrorState extends HomeState{

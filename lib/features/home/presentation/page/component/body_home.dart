@@ -95,83 +95,84 @@ class _BodyHomeState extends State<BodyHome> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            if(state is SuccessInfoHomePage)
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "Hello ${state.infoModel.personal!.name.toString()}",
-                                  style: TextConfig.configText(
-                                      color: WhiteColor,
-                                      fontsize: 14,
-                                      fontWeight: FontWeight.normal),
-                                ),
-
-                                Text(
-                                  "Welcome to ${state.infoModel.company!.name}",
-                                  style: TextConfig.configText(
-                                      color: WhiteColor,
-                                      fontsize: 18,
-                                      fontWeight: FontWeight.normal),
-                                ),
-                              ],
-                            ),
-                            if(state is SuccessInfoHomePage)
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                GestureDetector(
-                                  onTap: () async {
-                                    Navigator.pushNamed(
-                                        context, AppRoute.profileScreen);
-                                  },
-                                  child: Padding(
-                                      padding: EdgeInsets.all(5),
-                                      child: CircleAvatar(
-                                        radius: 31,
-                                        backgroundColor: WhiteColor,
-                                        child: ClipOval(
-                                          child: Image.network(
-                                            state.infoModel.company!.imageProfile!.url.toString(),
-                                            fit: BoxFit.cover,
-                                            width: 60,
-                                            height: 60,
-                                          ),
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 10,
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 0),
-                                  child: InkWell(
-                                    onTap: () {
-                                      getToken();
+                            if (state is SuccessInfoHomePage)
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Hello ${state.infoModel.personal!.name.toString()}",
+                                    style: TextConfig.configText(
+                                        color: WhiteColor,
+                                        fontsize: 14,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                  Text(
+                                    "Welcome to ${state.infoModel.company!.name}",
+                                    style: TextConfig.configText(
+                                        color: WhiteColor,
+                                        fontsize: 18,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                ],
+                              ),
+                            if (state is SuccessInfoHomePage)
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                    onTap: () async {
+                                      Navigator.pushNamed(
+                                          context, AppRoute.profileScreen);
                                     },
-                                    child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: 2, horizontal: 10),
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(30),
-                                          // color: Colors.lightBlue[700],
-                                          border:
-                                              Border.all(color: WhiteColor)),
-                                      child: Text(
-                                        'Take a tour',
-                                        style: TextConfig.configText(
-                                            fontsize: 14,
-                                            fontWeight: FontWeight.normal,
-                                            color: WhiteColor),
+                                    child: Padding(
+                                        padding: EdgeInsets.all(5),
+                                        child: CircleAvatar(
+                                          radius: 31,
+                                          backgroundColor: WhiteColor,
+                                          child: ClipOval(
+                                            child: Image.network(
+                                              state.infoModel.company!
+                                                  .imageProfile!.url
+                                                  .toString(),
+                                              fit: BoxFit.cover,
+                                              width: 60,
+                                              height: 60,
+                                            ),
+                                          ),
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 0),
+                                    child: InkWell(
+                                      onTap: () {
+                                        getToken();
+                                      },
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: 2, horizontal: 10),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(30),
+                                            // color: Colors.lightBlue[700],
+                                            border:
+                                                Border.all(color: WhiteColor)),
+                                        child: Text(
+                                          'Take a tour',
+                                          style: TextConfig.configText(
+                                              fontsize: 14,
+                                              fontWeight: FontWeight.normal,
+                                              color: WhiteColor),
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
-                            ),
+                                ],
+                              ),
                           ],
                         ),
                       );
@@ -183,28 +184,24 @@ class _BodyHomeState extends State<BodyHome> {
                   Text('Your friends'),
                   Container(
                     height: 70,
-                    child: BlocConsumer<HomeCubit, HomeState>(
-  listener: (context, state) {
-    // TODO: implement listener
-  },
-  builder: (context, state) {
-    if (state is SuccessFriend) {
-      return ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: state.friendModel.length,
-          itemBuilder: (_, index) {
-            var img =state.friendModel[index].imageProfile;
-            return BaseFriend(
-              img: img ==null? null :img.url,
-              name:state.friendModel[index].name.toString(),
-              des: "coming soon",
-            );
-          });
-    }else{
-      return Container();
-    }
-  }
-),
+                    child: BlocBuilder<HomeCubit, HomeState>(
+                       builder: (context, state) {
+                      if (state is SuccessInfoHomePage) {
+                        return ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: state.friendModel.length,
+                            itemBuilder: (_, index) {
+                              var img = state.friendModel[index].imageProfile;
+                              return BaseFriend(
+                                img: img == null ? null : img.url,
+                                name: state.friendModel[index].name.toString(),
+                                des: "coming soon",
+                              );
+                            });
+                      } else {
+                        return Container();
+                      }
+                    }),
                   ),
                   SizedBox(
                     height: 15,

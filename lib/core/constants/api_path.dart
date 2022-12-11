@@ -7,4 +7,5 @@ class ApiPath{
   static const String login = "/auth/login";
   static const String me = "/auth/me";
   static const String persion = "/personal";
+  static const String post = "/post";
 }

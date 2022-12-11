@@ -14,23 +14,20 @@ import '../../../models/your_friend_model.dart';
 part 'home_state.dart';
 @injectable
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeInitial());
+  HomeCubit(this.infoModel,this.friendModel) : super(HomeInitial());
+  InfoModel infoModel;
+  List<FriendModel> friendModel=[];
   Future<void> getInfoHomePage() async {
     try {
       emit(LoadingGetInfoHomePage());
-      InfoModel infoModel;
-      print("post");
 
       final post  = await ApiCustom.getPrivateCall(ApiPath.me);
-      print("post");
       final decode = json.decode(post.body);
-      print(post.body);
       if(post.statusCode==422){
         emit(ErrorState(message:decode['message']));
       }else if(post.statusCode==200){
         infoModel = InfoModel.fromJson(decode['data']);
-        print(infoModel.company);
-        emit(SuccessInfoHomePage(infoModel: infoModel));
+        emit(SuccessInfoHomePage(infoModel: infoModel, friendModel: []));
       }else{
         emit(ErrorState(message:decode['message']));
       }
@@ -43,7 +40,7 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getFriend() async {
     try {
       emit(LoadingGetInfoHomePage());
-      List<FriendModel> infoModel=[];
+
       final post  = await ApiCustom.getPrivateCall(ApiPath.persion+'?scope_recommend=all');
       final decode = json.decode(post.body);
       final list =decode['data'] as List;
@@ -51,14 +48,35 @@ class HomeCubit extends Cubit<HomeState> {
         emit(ErrorState(message:decode['message']));
       }else if(post.statusCode==200){
        for (var element in list) {
-         infoModel.add(FriendModel.fromJson(element));
+         friendModel.add(FriendModel.fromJson(element));
        }
-        emit(SuccessFriend(friendModel: infoModel));
+       emit(SuccessInfoHomePage(infoModel: infoModel, friendModel:friendModel));
+
       }else{
         emit(ErrorState(message:decode['message']));
       }
     } catch (e) {
-      print('@@@ $e');
+      emit(ErrorState(message:e.toString()));
+    }
+  }
+
+  Future<void> getEvent() async {
+    try {
+      emit(LoadingGetInfoHomePage());
+
+      final post  = await ApiCustom.getPrivateCall(ApiPath.post+'?type=event&order_by=early_schedule&scope_schedule=past');
+      final decode = json.decode(post.body);
+      final list =decode['data'] as List;
+      if(post.statusCode==200){
+       for (var element in list) {
+         friendModel.add(FriendModel.fromJson(element));
+       }
+       emit(SuccessInfoHomePage(infoModel: infoModel, friendModel:friendModel));
+
+      }else{
+        emit(ErrorState(message:decode['message']));
+      }
+    } catch (e) {
       emit(ErrorState(message:e.toString()));
     }
   }

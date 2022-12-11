@@ -15,21 +15,25 @@ import 'package:app_comet_hackathon/features/auth/domain/repositories/auth_repos
 import 'package:app_comet_hackathon/features/auth/domain/usecase/auth_usecase.dart'
     as _i7;
 import 'package:app_comet_hackathon/features/auth/presentation/cubit/auth_cubit.dart'
-    as _i13;
+    as _i15;
+import 'package:app_comet_hackathon/features/home/data/models/info_model.dart'
+    as _i9;
 import 'package:app_comet_hackathon/features/home/presentation/cubit/home_cubit.dart'
     as _i8;
-import 'package:app_comet_hackathon/features/root/presentation/cubit/root_cubit.dart'
-    as _i9;
-import 'package:app_comet_hackathon/features/todo/data/datasources/todo_remote_datasources.dart'
+import 'package:app_comet_hackathon/features/models/your_friend_model.dart'
     as _i10;
-import 'package:app_comet_hackathon/features/todo/data/repositories/todo_repository_impl.dart'
-    as _i12;
-import 'package:app_comet_hackathon/features/todo/domain/repositories/TodoRepository.dart'
+import 'package:app_comet_hackathon/features/root/presentation/cubit/root_cubit.dart'
     as _i11;
-import 'package:app_comet_hackathon/features/todo/domain/usecase/todo_usecase.dart'
+import 'package:app_comet_hackathon/features/todo/data/datasources/todo_remote_datasources.dart'
+    as _i12;
+import 'package:app_comet_hackathon/features/todo/data/repositories/todo_repository_impl.dart'
     as _i14;
+import 'package:app_comet_hackathon/features/todo/domain/repositories/TodoRepository.dart'
+    as _i13;
+import 'package:app_comet_hackathon/features/todo/domain/usecase/todo_usecase.dart'
+    as _i16;
 import 'package:app_comet_hackathon/features/todo/presentation/cubit/todo_cubit.dart'
-    as _i15;
+    as _i17;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
@@ -53,18 +57,21 @@ _i1.GetIt init(
       () => _i6.AuthRepositoryImpl(gh<_i4.AuthRemoteDataSources>()));
   gh.lazySingleton<_i7.GetCodeCompanyUseCase>(
       () => _i7.GetCodeCompanyUseCase(gh<_i5.AuthRepository>()));
-  gh.factory<_i8.HomeCubit>(() => _i8.HomeCubit());
-  gh.factory<_i9.RootCubit>(() => _i9.RootCubit());
-  gh.lazySingleton<_i10.TodoRemoteDataSources>(
-      () => _i10.TodoRemoteDataSourcesImpl(gh<_i3.ApiService>()));
-  gh.lazySingleton<_i11.TodoRepository>(
-      () => _i12.TotoRepositoryImpl(gh<_i10.TodoRemoteDataSources>()));
-  gh.factory<_i13.AuthCubit>(() => _i13.AuthCubit(
+  gh.factory<_i8.HomeCubit>(() => _i8.HomeCubit(
+        gh<_i9.InfoModel>(),
+        gh<List<_i10.FriendModel>>(),
+      ));
+  gh.factory<_i11.RootCubit>(() => _i11.RootCubit());
+  gh.lazySingleton<_i12.TodoRemoteDataSources>(
+      () => _i12.TodoRemoteDataSourcesImpl(gh<_i3.ApiService>()));
+  gh.lazySingleton<_i13.TodoRepository>(
+      () => _i14.TotoRepositoryImpl(gh<_i12.TodoRemoteDataSources>()));
+  gh.factory<_i15.AuthCubit>(() => _i15.AuthCubit(
         gh<_i7.GetCodeCompanyUseCase>(),
         gh<_i3.ApiService>(),
       ));
-  gh.lazySingleton<_i14.GetTodosUseCase>(
-      () => _i14.GetTodosUseCase(gh<_i11.TodoRepository>()));
-  gh.factory<_i15.TodoCubit>(() => _i15.TodoCubit(gh<_i14.GetTodosUseCase>()));
+  gh.lazySingleton<_i16.GetTodosUseCase>(
+      () => _i16.GetTodosUseCase(gh<_i13.TodoRepository>()));
+  gh.factory<_i17.TodoCubit>(() => _i17.TodoCubit(gh<_i16.GetTodosUseCase>()));
   return getIt;
 }
