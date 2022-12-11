@@ -2,12 +2,14 @@ import 'package:app_comet_hackathon/features/auth/presentation/cubit/auth_cubit.
 import 'package:app_comet_hackathon/features/root/presentation/cubit/root_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../features/auth/presentation/page/profile/profile.dart';
 import '../../../features/auth/presentation/page/register/auth_screen.dart';
 import '../../../features/auth/presentation/page/register/choose_career_activity.dart';
 import '../../../features/auth/presentation/page/register/create_info_user.dart';
 import '../../../features/auth/presentation/page/register/create_password.dart';
 import '../../../features/auth/presentation/page/register/fill_code.dart';
 import '../../../features/auth/presentation/page/register/login.dart';
+import '../../../features/home/presentation/page/faq/faq.dart';
 import '../../../features/todo/presentation/cubit/todo_cubit.dart';
 import '../../../features/todo/presentation/page/todo.dart';
 import '../../../root_page.dart';
@@ -22,6 +24,8 @@ class AppRoute {
   static const String createInfoUserScreen = "/create-info-user-screen";
   static const String createCareerActivity = "/create-career-activity";
   static const String loginScreen = "/login";
+  static const String profileScreen = "/profile";
+  static const String faqScreen = "/faq-Screen";
 
   static Route<dynamic>? routeGenerate(
       RouteSettings settings, TickerProvider tickerProvider) {
@@ -72,6 +76,17 @@ class AppRoute {
             create: (context) => getIt<AuthCubit>(param1: tickerProvider),
             child: LoginScreen(),
           ),
+        );
+        case profileScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<AuthCubit>(param1: tickerProvider),
+            child: Profile(),
+          ),
+        );
+      case faqScreen:
+        return MaterialPageRoute(
+          builder: (_) => const FaqScreen(),
         );
       default:
         return null;

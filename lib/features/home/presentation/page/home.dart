@@ -71,21 +71,69 @@ class _HomePageState extends State<HomePage> {
       ),
       body: BodyHome(),
       drawer:  Drawer(
+        width: 250,
+        backgroundColor: WhiteColor,
     child: ListView(
     // Important: Remove any padding from the ListView.
-    padding: EdgeInsets.zero,
+    padding: EdgeInsets.only(left: 10),
       children: [
-        const DrawerHeader(
+         DrawerHeader(
           decoration: BoxDecoration(
-            color: Colors.blue,
+            color: WhiteColor,
           ),
-          child: Text('Drawer Header'),
+          child:    Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () async {
+                  Navigator.pushNamed(context, AppRoute.profileScreen);
+                },
+                child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: CircleAvatar(
+                      radius: 31,
+                      backgroundColor: WhiteColor,
+                      child: ClipOval(
+                        child: Image.asset(
+                          'assets/devhub.jpg',
+                          fit: BoxFit.cover,
+                          width: 60,
+                          height: 60,
+                        ),
+                      ),
+                    )
+                ),
+              ),
+              SizedBox(height: 5,),
+              Text(
+                'Haltech',
+                style: TextConfig.configText(
+                    color: TextColor,
+                    fontsize: 14,
+                    fontWeight: FontWeight.bold),
+              ),
+              Text(
+                'Houng Ah Loun Technology',
+                style: TextConfig.configText(
+                    color: TextColor.withOpacity(0.4),
+                    fontsize: 12,
+                    fontWeight: FontWeight.normal),
+              ),
+            ],
+          ),
         ),
         ListTile(
-          leading: Icon(
-            Icons.home,
-          ),
-          title: const Text('Page 1'),
+          leading:SvgPicture.asset('assets/svg/language.svg',width: 20,height: 20,),
+          minLeadingWidth: 10,
+          title: const Text('FAQ'),
+          onTap: () {
+            Navigator.pushNamed(context, AppRoute.faqScreen);
+          },
+        ),
+        ListTile(
+          leading:SvgPicture.asset('assets/svg/user.svg',width: 20,height: 20,),
+          minLeadingWidth: 10,
+          title: const Text('employee'),
           onTap: () {
             Navigator.pop(context);
           },

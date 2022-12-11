@@ -1,8 +1,12 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'core/config/theme/color.dart';
+import 'core/util/firebase_message.dart';
+import 'core/util/handler_permission.dart';
 import 'features/feed/presentation/page/feed.dart';
 import 'features/fovorite/presentation/page/favorite.dart';
 import 'features/home/presentation/page/home.dart';
@@ -20,11 +24,67 @@ class _RootPageAppState extends State<RootPage> {
   @override
   void initState() {
     _getChangeBottomNav(0);
+    _onSetUpFirebase();
     super.initState();
   }
   void _getChangeBottomNav(int index) {
-    print(index);
     context.read<RootCubit>().onChangeTap(index);
+  }
+
+  _onSetUpFirebase()async{
+    //@@@ firebase setup
+
+    //@@@@==>comment for postman
+    // for only one @@@==> "to" : "f1Kpuu2kRNmWKiZMeJbxzr:APA91bGbtKQS6iaW7seYcNnzWLNtRYo3SPq5CaEJjANKJEGJEG6QcqlxU5pZUxSaJHSojse8kH2qFcM-A9Qqn6_sIkVK_7R0vdBabDWrKrtfiPi4SFwn8k9xL6cIrccjwcjXn6yJ2K9Q",
+    // for only multi person @@@==> "registration_ids":[ "token1", "token2",]
+    // for only for all @@@==> "to": "/topics/all",
+
+    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
+      if (!isAllowed) {
+        HandlerPermission.handlerPermissionNotification();
+      }else if(isAllowed){
+        //@@@ set token device to firebase store
+        // HandlerFirebaseStore.setTokenToFireStore();
+      }
+    });
+
+
+
+    await FirebaseMessaging.instance.setAutoInitEnabled(true);
+    await FirebaseMessaging.instance.subscribeToTopic("all");
+
+    await FirebaseMessaging.instance.getInitialMessage().then((message){
+      print(message);
+      final routerMessage = message;
+      print("messaging@@@ $routerMessage");
+    }).catchError((onError){
+      print("onError@@@ $onError");
+    });
+
+    //set config firebase messaging
+    FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+    FirebaseMessaging messaging =  FirebaseMessaging.instance;
+    NotificationSettings settings = await messaging.requestPermission(
+      alert: true,
+      announcement: false,
+      badge: true,
+      carPlay: false,
+      criticalAlert: false,
+      provisional: false,
+      sound: true,
+    );
+    print('User granted permissions status: ${settings.authorizationStatus}');
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      print("message@@@@@ ${message.notification!.title}");
+      context.read<RootCubit>().onMessageListening(message);
+    });
+
+    //@@@@ this for when opening app show action something :: push route, or something
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      print('@@@@@@@@@@@ Message also onMessageOpenedApp ${message.data}');
+      // notificationController.onMessageOpenedAppController(message);
+      context.read<RootCubit>().onMessageOpenedAppController(message);
+    });
   }
 
   @override

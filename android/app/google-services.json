@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "910027714987",
+    "project_id": "comet-hackathon-fe4f4",
+    "storage_bucket": "comet-hackathon-fe4f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:910027714987:android:cacd34d6d34bf2c7f762ee",
+        "android_client_info": {
+          "package_name": "com.example.app_comet_hackathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "910027714987-hnv1fe2e0f5kivb9aar43t9d41btel9f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDw6VTv-EV_1Rr3ZybiliiFdWISNqo2DBc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "910027714987-hnv1fe2e0f5kivb9aar43t9d41btel9f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

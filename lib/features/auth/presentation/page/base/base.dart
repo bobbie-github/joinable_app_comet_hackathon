@@ -46,3 +46,44 @@ class ProfileEdit extends StatelessWidget {
     );
   }
 }
+
+
+
+class BaseProfileInfo extends StatelessWidget {
+  const BaseProfileInfo({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: MediaQuery.of(context).size.width*0.45,
+      height: 40,
+      padding: EdgeInsets.all(3),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(3),
+          border: Border.all(color: TextColor.withOpacity(0.2)),
+          color: WhiteColor),
+      child: Align(alignment: Alignment.centerLeft,child: Text('Name')),
+    );
+  }
+}
+
+class BaseProfileActivity extends StatelessWidget {
+  const BaseProfileActivity({Key? key, required this.title}) : super(key: key);
+
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 40,
+      padding: EdgeInsets.symmetric(horizontal: 10),
+        margin: EdgeInsets.all(3),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(color: PrimaryColor),
+          color: PrimaryColor.withOpacity(0.01)),
+      child: Align(alignment: Alignment.centerLeft,child: Text(title)),
+    );
+  }
+}
+

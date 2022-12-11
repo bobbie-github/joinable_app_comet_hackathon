@@ -1,5 +1,7 @@
 
 
+import 'package:app_comet_hackathon/core/config/routes/router.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -29,6 +31,12 @@ class _BodyHomeState extends State<BodyHome> {
 
     _refreshController.refreshCompleted();
   }
+  getToken()async{
+    FirebaseMessaging messaging  = FirebaseMessaging.instance;
+    String ? token = await messaging.getToken();
+    print("token messaging: $token");
+  }
+
 
   @override
   void initState() {
@@ -48,8 +56,8 @@ class _BodyHomeState extends State<BodyHome> {
     final size  =MediaQuery.of(context).size;
     return SafeArea(
       child: Container(
-        // color: WhiteColor,
-        color: backGroundColor,
+        color: WhiteColor,
+        // color: backGroundColor,
         height: MediaQuery.of(context).size.height,
         child: SmartRefresher(
           enablePullDown: true,
@@ -90,7 +98,7 @@ class _BodyHomeState extends State<BodyHome> {
                           children: [
                             GestureDetector(
                               onTap: () async {
-
+                                Navigator.pushNamed(context, AppRoute.profileScreen);
                               },
                               child: Padding(
                                   padding: EdgeInsets.all(5),
@@ -111,18 +119,23 @@ class _BodyHomeState extends State<BodyHome> {
                             SizedBox(height: 10,),
                             Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 0),
-                              child: Container(
-                                padding: EdgeInsets.symmetric(vertical: 2,horizontal: 10),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(30),
-                                    // color: Colors.lightBlue[700],
-                                    border: Border.all(color: WhiteColor)),
-                                child:Text(
-                                  'Take a tour',
-                                  style: TextConfig.configText(
-                                      fontsize: 14,
-                                      fontWeight: FontWeight.normal,
-                                      color: WhiteColor),
+                              child: InkWell(
+                                onTap: (){
+                                  getToken();
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(vertical: 2,horizontal: 10),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                      // color: Colors.lightBlue[700],
+                                      border: Border.all(color: WhiteColor)),
+                                  child:Text(
+                                    'Take a tour',
+                                    style: TextConfig.configText(
+                                        fontsize: 14,
+                                        fontWeight: FontWeight.normal,
+                                        color: WhiteColor),
+                                  ),
                                 ),
                               ),
                             ),
@@ -154,8 +167,25 @@ class _BodyHomeState extends State<BodyHome> {
                         des: "tech lead",
                         time: '17:30',
                         icon: 'assets/svg/edit-profile.svg',
+                        color: RedColor,
+                        user: 'bobbie',
                       );
                     }),
+                  ),
+
+                  SizedBox(height: 15,),
+                  Text('Post'),
+                  Container(
+                    height:size.height *0.5,
+                    child:Wrap(
+                      children: List.generate(15, (index) => BasePost(
+                        img: 'assets/devhub.jpg',
+                        name: "Daungvilay Manykingkeo",
+                        time: '17:30',
+                        icon: 'assets/svg/edit-profile.svg',
+                        user: 'bobbie',
+                      )),
+                    ),
                   ),
                 ],
               ),
