@@ -1,7 +1,9 @@
 
 import 'package:app_comet_hackathon/core/config/routes/router.dart';
 import 'package:app_comet_hackathon/core/config/theme/text_config.dart';
+import 'package:app_comet_hackathon/features/home/presentation/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/config/theme/color.dart';
@@ -34,38 +36,92 @@ class _HomePageState extends State<HomePage> {
         centerTitle: false,
         titleSpacing: 0,
         leadingWidth: MediaQuery.of(context).size.width *0.85,
-        leading: Container(
+        leading: BlocConsumer<HomeCubit, HomeState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    return Container(
           padding: EdgeInsets.only(left: 7),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+
               Text('Welcome back,',style: TextConfig.configText(fontsize: 12,color: TextColor.withOpacity(0.4)),),
-              Text('Bobbie Manykingkeo',style: TextConfig.configText(fontsize: 16,fontWeight: FontWeight.normal)),
+              if(state is SuccessInfoHomePage)
+              Text(state.infoModel.personal!.name.toString(),style: TextConfig.configText(fontsize: 16,fontWeight: FontWeight.normal)),
             ],
           ),
-        ),
+        );
+  },
+),
         actions: [
 
           GestureDetector(
             onTap: () async {
               _key.currentState!.openDrawer();
             },
-            child: Padding(
-              padding: EdgeInsets.all(5),
-              child: CircleAvatar(
-                radius: 20,
-                backgroundColor: WhiteColor,
-                child: ClipOval(
-                  child: Image.asset(
-                    'assets/devhub.jpg',
-                    fit: BoxFit.cover,
-                    width: 40,
-                    height: 40,
-                  ),
+            child: BlocConsumer<HomeCubit, HomeState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    if (state is SuccessInfoHomePage) {
+      final img = state.infoModel.personal!.imageProfile;
+      print(img);
+      if(img !=null) {
+        return Padding(
+            padding: EdgeInsets.all(5),
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: WhiteColor,
+              child: ClipOval(
+                child: Image.network(
+                  img.preview.toString(),
+                  fit: BoxFit.cover,
+                  width: 40,
+                  height: 40,
                 ),
-              )
+              ),
+            )
+        );
+      }else{
+        return Padding(
+            padding: EdgeInsets.all(5),
+            child: CircleAvatar(
+              radius: 20,
+              backgroundColor: WhiteColor,
+              child: ClipOval(
+                child: Image.asset(
+                  "assets/logo.png",
+                  fit: BoxFit.cover,
+                  width: 40,
+                  height: 40,
+                ),
+              ),
+            )
+        );
+      }
+    }else{
+      return Padding(
+          padding: EdgeInsets.all(5),
+          child: CircleAvatar(
+            radius: 20,
+            backgroundColor: WhiteColor,
+            child: ClipOval(
+              child: Image.asset(
+                'assets/devhub.jpg',
+                fit: BoxFit.cover,
+                width: 40,
+                height: 40,
+              ),
             ),
+          )
+      );
+    }
+  }
+),
           ),
         ],
       ),

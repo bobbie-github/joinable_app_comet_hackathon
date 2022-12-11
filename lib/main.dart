@@ -2,6 +2,7 @@ import 'package:app_comet_hackathon/core/config/routes/router.dart';
 import 'package:app_comet_hackathon/core/config/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'bloc_provider.dart';
 import 'core/config/DI/configure_dependencies.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    FlutterNativeSplash.remove();
     return MaterialApp(
       title: 'JoinAble',
       //set up theme

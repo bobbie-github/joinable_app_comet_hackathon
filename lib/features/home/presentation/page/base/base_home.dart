@@ -7,14 +7,14 @@ import '../../../../../core/config/theme/text_config.dart';
 class BaseFriend extends StatelessWidget {
   const BaseFriend(
       {Key? key,
-      required this.img,
+       this.img,
       required this.name,
       required this.des,
       this.activity,
       this.career})
       : super(key: key);
 
-  final String img, name, des;
+  final img, name, des;
   final activity;
   final career;
   @override
@@ -32,6 +32,26 @@ class BaseFriend extends StatelessWidget {
         children: [
           Row(
             children: [
+
+              if(img !=null)
+              GestureDetector(
+                onTap: () async {},
+                child: Padding(
+                    padding: EdgeInsets.all(5),
+                    child: CircleAvatar(
+                      radius: 24,
+                      backgroundColor: WhiteColor,
+                      child: ClipOval(
+                        child: Image.network(
+                          img,
+                          fit: BoxFit.cover,
+                          width: 46,
+                          height: 46,
+                        ),
+                      ),
+                    )),
+              ),
+              if(img==null)
               GestureDetector(
                 onTap: () async {},
                 child: Padding(
@@ -41,7 +61,7 @@ class BaseFriend extends StatelessWidget {
                       backgroundColor: WhiteColor,
                       child: ClipOval(
                         child: Image.asset(
-                          img,
+                          'assets/devhub.jpg',
                           fit: BoxFit.cover,
                           width: 46,
                           height: 46,

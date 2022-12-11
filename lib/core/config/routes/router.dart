@@ -1,4 +1,5 @@
 import 'package:app_comet_hackathon/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:app_comet_hackathon/features/home/presentation/cubit/home_cubit.dart';
 import 'package:app_comet_hackathon/features/root/presentation/cubit/root_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,8 +33,16 @@ class AppRoute {
     switch (settings.name) {
       case initialRoute:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<RootCubit>(param1: tickerProvider),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider<RootCubit>(
+                create: (context) => getIt<RootCubit>(param1: tickerProvider),
+              ),
+              BlocProvider<HomeCubit>(
+                create: (context) => getIt<HomeCubit>(param1: tickerProvider),
+              ),
+            ],
+
             child: const RootPage(),
           ),
         );
