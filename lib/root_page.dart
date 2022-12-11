@@ -1,4 +1,10 @@
 
+import 'package:app_comet_hackathon/features/companyprofile/presentation/page/companyprofile.dart';
+import 'package:app_comet_hackathon/features/employee/presentation/page/employee.dart';
+import 'package:app_comet_hackathon/features/faq/presentation/page/faq.dart';
+import 'package:app_comet_hackathon/features/feeback/presentation/page/feedback.dart';
+import 'package:app_comet_hackathon/features/feeback/presentation/page/feedbackCreate.dart';
+import 'package:app_comet_hackathon/features/profile/presentation/page/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,7 +29,7 @@ class _RootPageAppState extends State<RootPage> {
   }
   @override
   Widget build(BuildContext context) {
-    return  BlocBuilder(builder: (_,index) {
+    // return  BlocBuilder(builder: (_,index) {
       return Container(
         decoration: BoxDecoration(
           boxShadow: [
@@ -34,24 +40,30 @@ class _RootPageAppState extends State<RootPage> {
           ],
         ),
         child: Scaffold(
-          backgroundColor: controller.indexTab == 3 ? PrimaryColor : null,
+          // backgroundColor: controller.indexTab == 3 ? PrimaryColor : null,
           body: SafeArea(
             child: IndexedStack(
-              index: controller.indexTab,
+              // index: controller.indexTab,
               children:const [
-                HomePage(),
-                Feed(),
-                MessageScreen(),
+                // HomePage(),
+                // Feed(),
+                // MessageScreen(),
+                ProfilePage(),
+                // EmployeePage(),
+                // CompanyProfilePage(),
+                // FeedbackPage(),
+                // FAQPage(),
+                // FeedbackCreatePage(),
               ],
             ),
           ),
           bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey[400],
             selectedItemColor: PrimaryColor,
-            onTap: controller.OnchangeTableIndex,
+            // onTap: controller.OnchangeTableIndex,
             showSelectedLabels: true,
             showUnselectedLabels: true,
-            currentIndex: controller.indexTab,
+            // currentIndex: controller.indexTab,
             type: BottomNavigationBarType.fixed,
             backgroundColor: WhiteColor,
             selectedLabelStyle: TextStyle(fontSize: 9),
@@ -63,9 +75,9 @@ class _RootPageAppState extends State<RootPage> {
                   'assets/svg/home.svg',
                   width: 20,
                   height: 20,
-                  color: controller.indexTab == 0
-                      ? PrimaryColor
-                      : Colors.grey[400],
+                  // color: controller.indexTab == 0
+                  //     ? PrimaryColor
+                  //     : Colors.grey[400],
                 ),
                 label: 'home',
               ),
@@ -74,46 +86,46 @@ class _RootPageAppState extends State<RootPage> {
                   'assets/svg/user.svg',
                   width: 20,
                   height: 20,
-                  color: controller.indexTab == 1
-                      ? PrimaryColor
-                      : Colors.grey[400],
+                  // color: controller.indexTab == 1
+                  //     ? PrimaryColor
+                  //     : Colors.grey[400],
                 ),
                 label: 'sv_contact',
               ),
-              BottomNavigationBarItem(
-                icon: notificationController.notificationCounter.value !=0
-                    ? Badge(
-                  badgeContent: Text(
-                    '${notificationController.notificationCounter.value}',
-                    style: TextStyle(color: WhiteColor),
-                  ),
-                  child: SvgPicture.asset(
-                    'assets/svg/message.svg',
-                    width: 20,
-                    height: 20,
-                    color: controller.indexTab == 2
-                        ? PrimaryColor
-                        : Colors.grey[400],
-                  ),
-                )
-                    : SvgPicture.asset(
-                  'assets/svg/Notification.svg',
-                  width: 20,
-                  height: 20,
-                  color: controller.indexTab == 2
-                      ? PrimaryColor
-                      : Colors.grey[400],
-                ),
-                label: 'nav_notification',
-              ),
+              // BottomNavigationBarItem(
+              //   icon: notificationController.notificationCounter.value !=0
+              //       ? Badge(
+              //     badgeContent: Text(
+              //       '${notificationController.notificationCounter.value}',
+              //       style: TextStyle(color: WhiteColor),
+              //     ),
+              //     child: SvgPicture.asset(
+              //       'assets/svg/message.svg',
+              //       width: 20,
+              //       height: 20,
+              //       color: controller.indexTab == 2
+              //           ? PrimaryColor
+              //           : Colors.grey[400],
+              //     ),
+              //   )
+              //       : SvgPicture.asset(
+              //     'assets/svg/Notification.svg',
+              //     width: 20,
+              //     height: 20,
+              //     // color: controller.indexTab == 2
+              //     //     ? PrimaryColor
+              //     //     : Colors.grey[400],
+              //   ),
+              //   label: 'nav_notification',
+              // ),
               BottomNavigationBarItem(
                 icon: SvgPicture.asset(
                   'assets/svg/list.svg',
                   width: 20,
                   height: 20,
-                  color: controller.indexTab == 3
-                      ? PrimaryColor
-                      : Colors.grey[400],
+                  // color: controller.indexTab == 3
+                  //     ? PrimaryColor
+                  //     : Colors.grey[400],
                 ),
                 label: 'nav_setting',
               ),
@@ -121,7 +133,7 @@ class _RootPageAppState extends State<RootPage> {
           ),
         ),
       );
-    },);
+    // },);
 
 
 
